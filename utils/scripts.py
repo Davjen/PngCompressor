@@ -4,7 +4,7 @@ import struct
 
 def chunk_reader(f):
     #Returns (chunk_type,chunk_data)
-    chunk_length, chunk_type = struct.unpack('>I4s', f.read(8)) #integer 4char(?)
+    chunk_length, chunk_type = struct.unpack('>I4s', f.read(8)) #integer 4char(?) > big endian
     chunk_data = f.read(chunk_length)
     checksum = zlib.crc32(chunk_data, zlib.crc32(struct.pack('>4s', chunk_type)))
     chunk_crc, = struct.unpack('>I', f.read(4))
@@ -22,7 +22,7 @@ def IHDR_rule_definition(color_type,bit_depth,interlace_method,filter_method,com
                 "filter_method":filter_method,
                 "compression_method":compression_method}
     
-    return rule_def
+    return rule_def 
     
 def IHDR_sanity_check(rules,chunk):
     """Given the rules check the sanity of the IHDR"""

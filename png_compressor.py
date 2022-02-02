@@ -7,6 +7,8 @@ import numpy as np
 img_to_open=open('resources\\basn6a08.png', 'rb')
 
 png_signature = b'\x89PNG\r\n\x1a\n' #b is for byte string.
+
+
  
 rules=scripts.IHDR_rule_definition(6,8,0,0,0)
 
